@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace simpleBlog.App_Start
 {
@@ -21,7 +17,8 @@ namespace simpleBlog.App_Start
                 .Include("~/Scripts/jquery-3.1.1.js")
                 .Include("~/Scripts/jquery.validate.js")
                 .Include("~/Scripts/jquery.validate.unobtrusive.js")
-                .Include("~/Scripts/bootstrap.js"));
+                .Include("~/Scripts/bootstrap.js")
+                .Include("~/Areas/Admin/Scripts/Forms.js"));
             bundles.Add(new ScriptBundle("~/scripts")
                 .Include("~/Scripts/jquery-3.1.1.js")
                 .Include("~/Scripts/jquery.validate.js")
