@@ -1,4 +1,7 @@
-﻿using simpleBlog.Infrastructure;
+﻿using NHibernate.Linq;
+using simpleBlog.Areas.Admin.ViewModels;
+using simpleBlog.Infrastructure;
+using simpleBlog.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +16,10 @@ namespace simpleBlog.Areas.Admin.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View(new UsersIndex
+            {
+                Users = Database.Session.Query<User>().ToList()
+            });
         }
     }
 }
