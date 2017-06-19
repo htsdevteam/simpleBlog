@@ -1,4 +1,6 @@
-﻿using simpleBlog.ViewModels;
+﻿using NHibernate.Linq;
+using simpleBlog.Models;
+using simpleBlog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +20,23 @@ namespace simpleBlog.Controllers
         [HttpPost]
         public ActionResult Login(AuthLogin form, string returnUrl)
         {
+            var user = Database.Session.Query<User>().FirstOrDefault(u => u.Username == form.Username);
+            if (user == null || !user.CheckPassword(form.Password))
+            {
+                if (user == null)
+                {
+                    Models.User.FakeHash();
+                }
+
+                ModelState.AddModelError("Username", "Username or password is incorrect");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(form);
             }
 
-            FormsAuthentication.SetAuthCookie(form.Username, true);
+            FormsAuthentication.SetAuthCookie(user.Username, true);
 
             if (!string.IsNullOrWhiteSpace(returnUrl))
             {
