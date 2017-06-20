@@ -1,9 +1,5 @@
 ﻿using FluentMigrator;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 
 namespace simpleBlog.Migrations
 {
@@ -26,14 +22,14 @@ namespace simpleBlog.Migrations
                 .WithColumn("slug").AsString(128)
                 .WithColumn("name").AsString(128);
 
-            Create.Table("posts_tags")
+            Create.Table("post_tags")
                 .WithColumn("tag_id").AsInt32().ForeignKey("tags", "id").OnDelete(Rule.Cascade)
                 .WithColumn("post_id").AsInt32().ForeignKey("posts", "id").OnDelete(Rule.Cascade);
         }
 
         public override void Down()
         {
-            Delete.Table("posts_tags");
+            Delete.Table("post_tags");
             Delete.Table("posts");
             Delete.Table("tags");
         }
