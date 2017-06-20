@@ -29,6 +29,8 @@ namespace simpleBlog
             var mapper = new ModelMapper();
             mapper.AddMapping<UserMap>();
             mapper.AddMapping<RoleMap>();
+            mapper.AddMapping<TagMap>();
+            mapper.AddMapping<PostMap>();
             config.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
 
             // create session factory
