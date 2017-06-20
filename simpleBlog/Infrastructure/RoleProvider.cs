@@ -6,7 +6,7 @@ namespace simpleBlog.Infrastructure
     {
         public override string[] GetRolesForUser(string username)
         {
-            if (username == "admin")
+            if (username == "nelson")
             {
                 return new[] { "admin" };
             }
