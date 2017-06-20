@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace simpleBlog.Infrastructure
 {
@@ -6,11 +7,7 @@ namespace simpleBlog.Infrastructure
     {
         public override string[] GetRolesForUser(string username)
         {
-            if (username == "nelson")
-            {
-                return new[] { "admin" };
-            }
-            return new string[0];
+            return Auth.User.Roles.Select(r => r.Name).ToArray();
         }
 
         public override string ApplicationName
