@@ -1,7 +1,6 @@
 ﻿using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace simpleBlog.Models
@@ -22,6 +21,11 @@ namespace simpleBlog.Models
         public virtual IList<Tag> Tags { get; set; }
 
         public virtual bool IsDeleted { get { return DeletedAt.HasValue; } }
+
+        public Post()
+        {
+            Tags = new List<Tag>();
+        }
     }
 
     public class PostMap : ClassMapping<Post>
