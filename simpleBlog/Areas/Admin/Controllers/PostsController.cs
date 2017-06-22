@@ -20,10 +20,19 @@ namespace simpleBlog.Areas.Admin.Controllers
         {
             var totalPostCount = Database.Session.Query<Post>().Count();
 
-            var currentPostPage = Database.Session.Query<Post>()
-                .OrderByDescending(c => c.CreatedAt)
+            var baseQuery = Database.Session.Query<Post>().OrderByDescending(
+                f => f.CreatedAt);
+
+            var postIds = baseQuery
                 .Skip((page - 1) * PostsPerPage)
                 .Take(PostsPerPage)
+                .Select(p => p.Id)
+                .ToArray();
+
+            var currentPostPage = baseQuery
+                .Where(p => postIds.Contains(p.Id))
+                .FetchMany(f => f.Tags)
+                .Fetch(f => f.User)
                 .ToList();
 
             return View(new PostsIndex
