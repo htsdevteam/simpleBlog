@@ -25,9 +25,11 @@ namespace simpleBlog.App_Start
 
             bundles.Add(new ScriptBundle("~/scripts")
                 .Include("~/Scripts/jquery-3.1.1.js")
+                .Include("~/Scripts/jquery.timeago.js")
                 .Include("~/Scripts/jquery.validate.js")
                 .Include("~/Scripts/jquery.validate.unobtrusive.js")
-                .Include("~/Scripts/bootstrap.js"));
+                .Include("~/Scripts/bootstrap.js")
+                .Include("~/Scripts/Frontend.js"));
         }
     }
 }
